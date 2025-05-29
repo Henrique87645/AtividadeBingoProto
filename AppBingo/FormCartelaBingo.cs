@@ -20,10 +20,6 @@ namespace AppBingo
             _form1 = form1;
         }
 
-        public FormCartelaBingo()
-        {
-        }
-
         string SoNumero(string Texto)
         {
             string resultado = "";
@@ -34,12 +30,10 @@ namespace AppBingo
                     resultado += Texto[i];
                 }
             }
-
             //Retorno o resultado
             return resultado;
         }
 
-        private List<int> numerosSorteados = new List<int>(); // adicionados após cada sorteio
         private DateTime inicioBingo; // salvo na Parte 1
         private DateTime fimBingo;
         private string nomeVencedor;
