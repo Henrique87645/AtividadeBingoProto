@@ -1,0 +1,11 @@
+C:\Users\LIE\source\repos\AppBingo\bin\Debug\AppBingo.exe.config
+C:\Users\LIE\source\repos\AppBingo\bin\Debug\AppBingo.exe
+C:\Users\LIE\source\repos\AppBingo\bin\Debug\AppBingo.pdb
+C:\Users\LIE\source\repos\AppBingo\obj\Debug\AppBingo.csproj.AssemblyReference.cache
+C:\Users\LIE\source\repos\AppBingo\obj\Debug\AppBingo.Form1.resources
+C:\Users\LIE\source\repos\AppBingo\obj\Debug\AppBingo.Properties.Resources.resources
+C:\Users\LIE\source\repos\AppBingo\obj\Debug\AppBingo.csproj.GenerateResource.cache
+C:\Users\LIE\source\repos\AppBingo\obj\Debug\AppBingo.csproj.CoreCompileInputs.cache
+C:\Users\LIE\source\repos\AppBingo\obj\Debug\AppBingo.exe
+C:\Users\LIE\source\repos\AppBingo\obj\Debug\AppBingo.pdb
+C:\Users\LIE\source\repos\AppBingo\obj\Debug\AppBingo.FormCartelaBingo.resources
