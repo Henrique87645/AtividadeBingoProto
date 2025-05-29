@@ -181,13 +181,13 @@ namespace AppBingo
 
         private void btnBingo_Click(object sender, EventArgs e)
         {
-            FormCartelaBingo tela = new FormCartelaBingo();
+            FormCartelaBingo tela = new FormCartelaBingo(this);
             tela.ShowDialog();
         }
 
         private void btnFinalizarBingo_Click(object sender, EventArgs e)
         {
-            FormCartelaBingo tela = new FormCartelaBingo();
+            FormCartelaBingo tela = new FormCartelaBingo(this);
             tela.ShowDialog();
         }
     }
