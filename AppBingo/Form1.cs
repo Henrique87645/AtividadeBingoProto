@@ -71,8 +71,10 @@ namespace AppBingo
             return cadastro;
         }
 
+        public string caminhoArquivoAtual;
+
         // Método para salvar o cadastro
-        void Salvar()
+        public void Salvar()
         {
             string date = DateTime.Now.ToShortDateString();
             string time = DateTime.Now.ToShortTimeString();
@@ -101,11 +103,92 @@ namespace AppBingo
                     "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-
+            caminhoArquivoAtual = caminhoCompleto;
         }
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             Salvar();
+
+        }
+
+        private List<int> numerosRestantes = new List<int>();
+        private int numeroAtual = -1;
+        private int numeroAnterior = -1;
+        private Dictionary<int, Label> labelsNumeros = new Dictionary<int, Label>();
+        private Random rnd = new Random();
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            numerosRestantes = Enumerable.Range(1, 75).ToList();
+
+            // Preenche dicionário com os labels
+            for (int i = 1; i <= 75; i++)
+            {
+                Label lbl = this.Controls.Find("lbsNum" + i.ToString(), true).FirstOrDefault() as Label;
+                if (lbl != null)
+                    labelsNumeros[i] = lbl;
+            }
+        }
+        private string GetLetra(int numero)
+        {
+            if (numero <= 15) return "B";
+            if (numero <= 30) return "I";
+            if (numero <= 45) return "N";
+            if (numero <= 60) return "G";
+            return "O";
+        }
+
+        private void SortearNumero()
+        {
+            if (numerosRestantes.Count == 0)
+            {
+                MessageBox.Show("Todos os números já foram sorteados!");
+                return;
+            }
+            // Sorteia índice aleatório e obtém número
+            int index = rnd.Next(numerosRestantes.Count);
+            int sorteado = numerosRestantes[index];
+            numerosRestantes.RemoveAt(index);
+
+            // Atualiza registros
+            numeroAnterior = numeroAtual;
+            numeroAtual = sorteado;
+
+            // Letra correspondente (B-I-N-G-O)
+            string letraAtual = GetLetra(numeroAtual);
+            string letraAnterior = numeroAnterior > 0 ? GetLetra(numeroAnterior) : "";
+
+            // Atualiza labels
+            lblNumAtual.Text = $"{letraAtual}\n{numeroAtual:D2}";
+            lblNumAnterior.Text = numeroAnterior > 0 ? $"{letraAnterior} {numeroAnterior:D2}" : "";
+
+            // Marca label do número sorteado em verde
+            if (labelsNumeros.TryGetValue(numeroAtual, out Label lblAtual))
+            {
+                lblAtual.BackColor = Color.LimeGreen;
+                lblAtual.ForeColor = Color.White;
+                lblAtual.Font = new Font(lblAtual.Font, FontStyle.Bold);
+            }
+
+            // Grava no arquivo
+            File.AppendAllText(caminhoArquivoAtual,Environment.NewLine + $"Sorteado: {letraAtual} {numeroAtual:D2}");
+        }
+
+        private void btnSortearNumero_Click(object sender, EventArgs e)
+        {
+            SortearNumero();
+        }
+
+        private void btnBingo_Click(object sender, EventArgs e)
+        {
+            FormCartelaBingo tela = new FormCartelaBingo();
+            tela.ShowDialog();
+        }
+
+        private void btnFinalizarBingo_Click(object sender, EventArgs e)
+        {
+            FormCartelaBingo tela = new FormCartelaBingo();
+            tela.ShowDialog();
         }
     }
 }
