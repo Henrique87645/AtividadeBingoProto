@@ -62,11 +62,13 @@ namespace AppBingo
             return Path.Combine(raizExe, nomePasta, nomeArquivo + ".txt");
         }
 
+        public string inicioBingo = DateTime.Now.ToShortTimeString();
         string GetCadastro()
         {
+           
             //Iremos concatenar os dados do cadastro para gerear o conteudo do arquivo
             string cadastro = "Nome do Prêmio: " + txtPremio.Text + Environment.NewLine +
-                            "Horário de início: " + DateTime.Now.ToShortTimeString();
+                            "Horário de início: " + inicioBingo;
 
             return cadastro;
         }
@@ -181,13 +183,13 @@ namespace AppBingo
 
         private void btnBingo_Click(object sender, EventArgs e)
         {
-            FormCartelaBingo tela = new FormCartelaBingo();
+            FormCartelaBingo tela = new FormCartelaBingo(this);
             tela.ShowDialog();
         }
 
         private void btnFinalizarBingo_Click(object sender, EventArgs e)
         {
-            FormCartelaBingo tela = new FormCartelaBingo();
+            FormCartelaBingo tela = new FormCartelaBingo(this);
             tela.ShowDialog();
         }
     }

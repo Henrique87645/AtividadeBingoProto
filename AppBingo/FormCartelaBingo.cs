@@ -20,10 +20,6 @@ namespace AppBingo
             _form1 = form1;
         }
 
-        public FormCartelaBingo()
-        {
-        }
-
         string SoNumero(string Texto)
         {
             string resultado = "";
@@ -40,7 +36,6 @@ namespace AppBingo
         }
 
         private List<int> numerosSorteados = new List<int>(); // adicionados após cada sorteio
-        private DateTime inicioBingo; // salvo na Parte 1
         private DateTime fimBingo;
         private string nomeVencedor;
         private List<int> cartelaVencedora;
@@ -82,7 +77,7 @@ namespace AppBingo
             }
 
             bool cartelaValida = cartela.All(n => !numerosRestantes.Contains(n));
-
+            
             if (cartelaValida)
             {
                 nomeVencedor = nome;
@@ -101,8 +96,9 @@ namespace AppBingo
         private void btnFinalizarBingo_Click(object sender, EventArgs e)
         {
             string caminho = _form1.caminhoArquivoAtual;
+            DateTime inicioBingo = DateTime.Parse(_form1.inicioBingo); // Convert string to DateTime
 
-            TimeSpan duracao = fimBingo - inicioBingo;
+            TimeSpan duracao = fimBingo - inicioBingo; // Calculate duration
 
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"\nVencedor: {nomeVencedor}");
